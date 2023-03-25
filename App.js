@@ -3,6 +3,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./Screens/Login/Login";
 import NavigationBar from "./NavigationBar";
+import Map from "./Screens/Map/Map";
+import Home from "./Screens/Home/Home";
 
 const Stack = createStackNavigator();
 
@@ -12,6 +14,8 @@ export default function App() {
             <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="login">
                 <Stack.Screen name="login" component={Login} />
                 <Stack.Screen name="NavigationBar" component={NavigationBar} />
+                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Map" component={Map} />
             </Stack.Navigator>
         </NavigationContainer>
     );
