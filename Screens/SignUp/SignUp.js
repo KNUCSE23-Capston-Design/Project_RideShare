@@ -9,25 +9,23 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const Login = () => {
-  // useState : 아이디와 암호 입력 값을 저장
+const SignUp = () => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
 
   const navigation = useNavigation();
 
-  const handleLogin = () => {
-    //'handleLogin'함수는 "로그인" 버튼을 눌렀을 때 호출됨
-    //버튼 클릭시 홈화면으로 이동(일시적)
-    navigation.navigate("NavigationBar");
-
-    //ID 및 암호 확인 로직 작성 필요
-    //로그인에 성공하면 navigation.navigate()를 사용하여 다음 화면으로 이동
+  const handleSignup = () => {
+    // Add logic for saving user data to a database or API
+    // Move to home screen or login screen when signup is complete
+    navigation.navigate("Login");
   };
 
-  const handleSignUp = () => {
-    //회원가입 클릭시 호출
-    navigation.navigate("SignUp");
+  const handleLogin = () => {
+    // Move to login screen when "Login" link is clicked
+    navigation.navigate("Login");
   };
 
   return (
@@ -46,15 +44,30 @@ const Login = () => {
         placeholder="Password"
         secureTextEntry={true}
       />
-      <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setNickname(text)}
+        value={nickname}
+        placeholder="Nickname"
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={(text) => setEmail(text)}
+        value={email}
+        placeholder="Email"
+        keyboardType="email-address"
+      />
+      <TouchableOpacity onPress={handleSignup} style={styles.signupButton}>
         <View style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>Sign up</Text>
         </View>
       </TouchableOpacity>
-      <Text style={styles.signupText}>RideShare가 처음이신가요?</Text>
-      <TouchableOpacity onPress={handleSignUp}>
-        <Text style={styles.signupLink}>회원가입</Text>
-      </TouchableOpacity>
+      <Text style={styles.loginText}>
+        Already have an account?{" "}
+        <Text style={styles.loginLink} onPress={handleLogin}>
+          Login
+        </Text>
+      </Text>
     </View>
   );
 };
@@ -73,8 +86,9 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
-  loginButton: {
+  signupButton: {
     width: "80%",
+    marginTop: 20,
   },
   buttonContainer: {
     backgroundColor: "blue",
@@ -85,12 +99,12 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 16,
   },
-  signupText: {
+  loginText: {
     marginTop: 30,
   },
-  signupLink: {
+  loginLink: {
     color: "blue",
   },
 });
 
-export default Login;
+export default SignUp;
