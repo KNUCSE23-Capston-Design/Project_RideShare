@@ -18,13 +18,13 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   const handleSignup = () => {
-    // Add logic for saving user data to a database or API
-    // Move to home screen or login screen when signup is complete
+    // 사용자 데이터를 데이터베이스 또는 API에 저장하기 위한 로직 작성
+    // 등록이 완료되면 로그인 화면으로 이동
     navigation.navigate("Login");
   };
 
   const handleLogin = () => {
-    // Move to login screen when "Login" link is clicked
+    // 계정이 이미 있으면 로그인 화면으로 이동
     navigation.navigate("Login");
   };
 
@@ -59,13 +59,13 @@ const SignUp = () => {
       />
       <TouchableOpacity onPress={handleSignup} style={styles.signupButton}>
         <View style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Sign up</Text>
+          <Text style={styles.buttonText}>회원가입</Text>
         </View>
       </TouchableOpacity>
       <Text style={styles.loginText}>
-        Already have an account?{" "}
+        이미 계정이 있으신가요?{" "}
         <Text style={styles.loginLink} onPress={handleLogin}>
-          Login
+          로그인
         </Text>
       </Text>
     </View>

@@ -16,8 +16,6 @@ const Login = () => {
 
   const navigation = useNavigation();
 
-  const Stack = createNativeStackNavigator();
-
   const handleLogin = () => {
     //'handleLogin'함수는 "로그인" 버튼을 눌렀을 때 호출됨
     //버튼 클릭시 홈화면으로 이동(일시적)
@@ -25,6 +23,11 @@ const Login = () => {
 
     //ID 및 암호 확인 로직 작성 필요
     //로그인에 성공하면 navigation.navigate()를 사용하여 다음 화면으로 이동
+  };
+
+  const handleSignUp = () => {
+    //회원가입 클릭시 회원가입 화면으로 이동
+    navigation.navigate("SignUp");
   };
 
   return (
@@ -45,13 +48,15 @@ const Login = () => {
       />
       <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
         <View style={styles.buttonContainer}>
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>로그인</Text>
         </View>
       </TouchableOpacity>
-      <Text style={styles.signupText}>RideShare가 처음이신가요?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('Login', { screen: 'SignUp' })}>
-        <Text style={styles.signupLink}>회원가입</Text>
-      </TouchableOpacity>
+      <Text style={styles.signupText}>
+        RideShare가 처음이신가요?{" "}
+        <Text style={styles.signupLink} onPress={handleSignUp}>
+          회원가입
+        </Text>
+      </Text>
     </View>
   );
 };
