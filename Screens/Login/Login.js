@@ -16,6 +16,8 @@ const Login = () => {
 
   const navigation = useNavigation();
 
+  const Stack = createNativeStackNavigator();
+
   const handleLogin = () => {
     //'handleLogin'함수는 "로그인" 버튼을 눌렀을 때 호출됨
     //버튼 클릭시 홈화면으로 이동(일시적)
@@ -47,7 +49,7 @@ const Login = () => {
         </View>
       </TouchableOpacity>
       <Text style={styles.signupText}>RideShare가 처음이신가요?</Text>
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login', { screen: 'SignUp' })}>
         <Text style={styles.signupLink}>회원가입</Text>
       </TouchableOpacity>
     </View>
