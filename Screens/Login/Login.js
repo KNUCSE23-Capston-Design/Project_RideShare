@@ -25,11 +25,6 @@ const Login = () => {
     //로그인에 성공하면 navigation.navigate()를 사용하여 다음 화면으로 이동
   };
 
-  const handleSignUp = () => {
-    //회원가입 클릭시 호출
-    navigation.navigate("SignUp");
-  };
-
   return (
     <View style={styles.container}>
       <Image source={require("../../assets/logo/logo_m.png")} />
@@ -52,7 +47,7 @@ const Login = () => {
         </View>
       </TouchableOpacity>
       <Text style={styles.signupText}>RideShare가 처음이신가요?</Text>
-      <TouchableOpacity onPress={handleSignUp}>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.signupLink}>회원가입</Text>
       </TouchableOpacity>
     </View>
