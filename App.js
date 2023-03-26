@@ -5,14 +5,16 @@ import Login from "./Screens/Login/Login";
 import NavigationBar from "./NavigationBar";
 import Map from "./Screens/Map/Map";
 import Home from "./Screens/Home/Home";
+import SignUp from "./Screens/SignUp/SignUp";
 
 const Stack = createStackNavigator();
 
 export default function App() {
     return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="login">
-                <Stack.Screen name="login" component={Login} />
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="SignUp" component={SignUp} />
                 <Stack.Screen name="NavigationBar" component={NavigationBar} />
                 <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Map" component={Map} />
