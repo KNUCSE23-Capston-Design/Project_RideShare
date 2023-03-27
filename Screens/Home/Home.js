@@ -36,7 +36,7 @@ const Home = () => {
                         <TouchableOpacity style={styles.button}>
                             <FontAwesomeIcon icon={faTaxi} style={{ color: "yellow" }} size={100} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} onPress={handleSearch}>
                             <FontAwesomeIcon icon={faCar} style={{ color: "#699fcb" }} size={100} />
                         </TouchableOpacity>
                     </View>

@@ -1,18 +1,31 @@
-import react, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { PROVIDER_GOOGLE } from "react-native-maps";
 import MapView from "react-native-maps/lib/MapView";
-import { StyleSheet } from "react-native";
 import * as Location from "expo-location";
 import { Alert } from "react-native";
 import { ActivityIndicator } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import List from "../CarPool/List";
 
 const GOOGLE_MAP_API = "AIzaSyBpsEC6HHCUYjrAc7e9Ap0VJ8a4w2raTek";
+const Stack = createStackNavigator();
 
 const Map = () => {
-    const route = useRoute();
-    const searchText = route.params.searchText;
+    const navigation = useNavigation();
+
+    const [showOtherComponents, setShowOtherComponents] = useState(false);
+
+    const toggleOtherComponents = () => {
+        if (showOtherComponents) {
+            setShowOtherComponents(false);
+            navigation.navigate("Map");
+        } else {
+            setShowOtherComponents(true);
+            navigation.navigate("List");
+        }
+    };
 
     const [
         location = {
@@ -34,10 +47,6 @@ const Map = () => {
 
             setLocation({ latitude, longitude });
 
-            if (longitude) {
-                Alert.alert("가져오나잉ㅇ");
-            }
-
             setIsLoading(false);
         } catch (e) {
             Alert.alert("위치 정보를 가져올 수 없습니다.");
@@ -53,16 +62,28 @@ const Map = () => {
             {isLoading || !location.latitude || !location.longitude ? (
                 <ActivityIndicator style={styles.loading} size="large" />
             ) : (
-                <MapView
-                    style={styles.map}
-                    initialRegion={{
-                        latitude: location.latitude,
-                        longitude: location.longitude,
-                        latitudeDelta: 0.01,
-                        longitudeDelta: 0.01,
-                    }}
-                    provider={PROVIDER_GOOGLE}
-                />
+                <View>
+                    <MapView
+                        style={styles.map}
+                        initialRegion={{
+                            latitude: location.latitude,
+                            longitude: location.longitude,
+                            latitudeDelta: 0.01,
+                            longitudeDelta: 0.01,
+                        }}
+                        provider={PROVIDER_GOOGLE}
+                    />
+
+                    {showOtherComponents && (
+                        <Stack.Navigator screenOptions={{ headerShown: false }}>
+                            <Stack.Screen name="List" component={List} />
+                        </Stack.Navigator>
+                    )}
+
+                    <TouchableOpacity style={styles.buttonContainer} onPress={toggleOtherComponents}>
+                        <Text style={styles.buttonText}>{showOtherComponents ? "Map" : "List"}</Text>
+                    </TouchableOpacity>
+                </View>
             )}
         </View>
     );
@@ -80,5 +101,22 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    buttonContainer: {
+        position: "absolute",
+        width: 80,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        top: "85%",
+        left: "75%",
+        backgroundColor: "#699fcb",
+        borderRadius: 10,
+        padding: 10,
+        zIndex: 2,
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: "bold",
     },
 });

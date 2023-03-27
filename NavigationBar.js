@@ -3,11 +3,12 @@ import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCar, faTaxi, faHouse, faUser, faComment } from "@fortawesome/free-solid-svg-icons";
-import Carpool from "./Screens/CarPool/CarPool";
+// import Carpool from "./Screens/CarPool/CarPool";
 import Taxi from "./Screens/Taxi/Taxi";
 import Home from "./Screens/Home/Home";
 import Info from "./Screens/Info/Info";
 import Chat from "./Screens/Chat/Chat";
+import Map from "./Screens/Map/Map";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ const NavigationBar = () => {
         <Tab.Navigator screenOptions={{ headerShown: false, tabBarLabelStyle: { display: "none" } }} initialRouteName="Home">
             <Tab.Screen
                 name="Carpool"
-                component={Carpool}
+                component={Map}
                 options={{
                     tabBarIcon: () => <FontAwesomeIcon icon={faCar} style={{ color: "#699fcb" }} size={25} />,
                 }}
