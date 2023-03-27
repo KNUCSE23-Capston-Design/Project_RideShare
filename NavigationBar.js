@@ -9,6 +9,7 @@ import Home from "./Screens/Home/Home";
 import Info from "./Screens/Info/Info";
 import Chat from "./Screens/Chat/Chat";
 import Map from "./Screens/Map/Map";
+import CarPool from "./Screens/CarPool/CarPool";
 
 const Tab = createBottomTabNavigator();
 
@@ -18,8 +19,8 @@ const NavigationBar = () => {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false, tabBarLabelStyle: { display: "none" } }} initialRouteName="Home">
             <Tab.Screen
-                name="Carpool"
-                component={Map}
+                name="CarPool"
+                component={CarPool}
                 options={{
                     tabBarIcon: () => <FontAwesomeIcon icon={faCar} style={{ color: "#699fcb" }} size={25} />,
                 }}

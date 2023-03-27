@@ -17,7 +17,7 @@ const Home = () => {
     };
 
     const handleSearch = () => {
-        navigation.navigate("Map", { searchText });
+        navigation.navigate("CarPool", { searchText });
     };
 
     return (

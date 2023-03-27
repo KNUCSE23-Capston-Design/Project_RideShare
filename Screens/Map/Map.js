@@ -15,17 +15,17 @@ const Stack = createStackNavigator();
 const Map = () => {
     const navigation = useNavigation();
 
-    const [showOtherComponents, setShowOtherComponents] = useState(false);
+    // const [showOtherComponents, setShowOtherComponents] = useState(false);
 
-    const toggleOtherComponents = () => {
-        if (showOtherComponents) {
-            setShowOtherComponents(false);
-            navigation.navigate("Map");
-        } else {
-            setShowOtherComponents(true);
-            navigation.navigate("List");
-        }
-    };
+    // const toggleOtherComponents = () => {
+    //     if (showOtherComponents) {
+    //         setShowOtherComponents(false);
+    //         navigation.navigate("Map");
+    //     } else {
+    //         setShowOtherComponents(true);
+    //         navigation.navigate("List");
+    //     }
+    // };
 
     const [
         location = {
@@ -74,15 +74,15 @@ const Map = () => {
                         provider={PROVIDER_GOOGLE}
                     />
 
-                    {showOtherComponents && (
+                    {/* {showOtherComponents && (
                         <Stack.Navigator screenOptions={{ headerShown: false }}>
                             <Stack.Screen name="List" component={List} />
                         </Stack.Navigator>
-                    )}
+                    )} */}
 
-                    <TouchableOpacity style={styles.buttonContainer} onPress={toggleOtherComponents}>
+                    {/* <TouchableOpacity style={styles.buttonContainer} onPress={toggleOtherComponents}>
                         <Text style={styles.buttonText}>{showOtherComponents ? "Map" : "List"}</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
             )}
         </View>
