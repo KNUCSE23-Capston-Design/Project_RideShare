@@ -9,10 +9,14 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
+import { useRecoilState } from "recoil";
+import { isLoggedInState } from "../atoms";
+
 const Login = () => {
   // useState : 아이디와 암호 입력 값을 저장
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
   const navigation = useNavigation();
 
@@ -20,6 +24,9 @@ const Login = () => {
     //'handleLogin'함수는 "로그인" 버튼을 눌렀을 때 호출됨
     //버튼 클릭시 홈화면으로 이동(일시적)
     navigation.navigate("NavigationBar");
+
+    //로그인 성공시, 로그인 상태 저장
+    setIsLoggedIn(true);
 
     //ID 및 암호 확인 로직 작성 필요
     //로그인에 성공하면 navigation.navigate()를 사용하여 다음 화면으로 이동
