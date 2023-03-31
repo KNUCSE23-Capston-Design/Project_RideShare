@@ -7,27 +7,33 @@ import Map from "./Screens/Map/Map";
 import Home from "./Screens/Home/Home";
 import SignUp from "./Screens/SignUp/SignUp";
 import CarPool from "./Screens/CarPool/CarPool";
+import { RecoilRoot } from "recoil";
 
 const Stack = createStackNavigator();
 
 export default function App() {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Login">
-                <Stack.Screen name="Login" component={Login} />
-                <Stack.Screen name="SignUp" component={SignUp} />
-                <Stack.Screen name="NavigationBar" component={NavigationBar} />
-                <Stack.Screen name="Home" component={Home} />
-                <Stack.Screen name="CarPool" component={CarPool} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
+  return (
+    <RecoilRoot>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false }}
+          initialRouteName="Login"
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="NavigationBar" component={NavigationBar} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="CarPool" component={CarPool} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </RecoilRoot>
+  );
 }
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#fff",
-        alignItems: "center",
-        justifyContent: "center",
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
