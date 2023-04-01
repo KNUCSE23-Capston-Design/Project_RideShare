@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, FlatList, StatusBar, TouchableOpacity, Image } from "react-native";
-import { Container, StyledText } from "../../Style";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCar, faTaxi } from "@fortawesome/free-solid-svg-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
+import MapDisplay from "../MapDisplay";
+import { useRecoilState } from "recoil";
+import { mapDisplayTypeState } from "../atoms";
 
 const Home = () => {
     const [searchText, setSearchText] = useState("");
+    const [mapDisplayType, setMapDisplayType] = useRecoilState(mapDisplayTypeState);
     const navigation = useNavigation();
 
     // 검색창에 입력하면 state 변경
@@ -16,8 +19,10 @@ const Home = () => {
         setSearchText(text);
     };
 
-    const handleSearch = () => {
-        navigation.navigate("CarPool", { searchText });
+    // screen type = string
+    const handleSearch = (screen) => {
+        navigation.navigate(MapDisplay, { screen });
+        setMapDisplayType(screen);
     };
 
     return (
@@ -27,16 +32,16 @@ const Home = () => {
                 <Image source={require("../../assets/logo/logo1.png")}></Image>
             </View>
             <View style={styles.searchContainer}>
-                <TextInput style={styles.searchBar} placeholder="Search for ride" onChangeText={handleSearchTextChange} value={searchText} onSubmitEditing={handleSearch} />
+                <TextInput style={styles.searchBar} placeholder="Search for ride" onChangeText={handleSearchTextChange} value={searchText} /*onSubmitEditing={handleSearch}*/ />
             </View>
             <View style={styles.categoriesContainer}>
                 <View style={styles.categoryContainer}>
                     <Text style={styles.category}>Get ride</Text>
                     <View style={styles.buttonsContainer}>
-                        <TouchableOpacity style={styles.button}>
+                        <TouchableOpacity style={styles.button} onPress={() => handleSearch("Taxi")}>
                             <FontAwesomeIcon icon={faTaxi} style={{ color: "yellow" }} size={100} />
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.button} onPress={handleSearch}>
+                        <TouchableOpacity style={styles.button} onPress={() => handleSearch("CarPool")}>
                             <FontAwesomeIcon icon={faCar} style={{ color: "#699fcb" }} size={100} />
                         </TouchableOpacity>
                     </View>
