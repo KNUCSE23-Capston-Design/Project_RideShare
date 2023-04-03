@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCar, faTaxi } from "@fortawesome/free-solid-svg-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import MapDisplay from "../MapDisplay";
 import { useRecoilState } from "recoil";
 import { mapDisplayTypeState } from "../atoms";
 
@@ -21,7 +20,7 @@ const Home = () => {
 
     // screen type = string
     const handleSearch = (screen) => {
-        navigation.navigate(MapDisplay, { screen });
+        navigation.navigate(screen, { screen });
         setMapDisplayType(screen);
     };
 

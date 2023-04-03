@@ -9,7 +9,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { isMapLoadingState, mapDisplayTypeState, showOtherComponentState } from "./atoms";
 import { Alert } from "react-native";
 import { useEffect } from "react";
-import { taxiDataState } from "./atoms";
+import { taxiDataState, carpoolDataState } from "./atoms";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +17,7 @@ const MapDisplay = () => {
     const navigation = useNavigation();
     const [showOtherComponents, setShowOtherComponents] = useRecoilState(showOtherComponentState);
     const [taxiData, setTaxiData] = useRecoilState(taxiDataState);
+    const [carpoolData, setCarpoolData] = useRecoilState(carpoolDataState);
 
     const mapType = useRecoilValue(mapDisplayTypeState);
     // console.log(mapType);
@@ -51,7 +52,11 @@ const MapDisplay = () => {
 
             // console.log(listData[0]);
 
-            setTaxiData(listData);
+            if (screen === "taxis") {
+                setTaxiData(listData);
+            } else if (screen === "carpools") {
+                setCarpoolData(listData);
+            }
         } catch (err) {
             console.log(err);
             Alert.alert("Server error");

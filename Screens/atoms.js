@@ -23,6 +23,10 @@ export const taxiDataState = atom({
     key: "taxiDataState",
     default: [],
 });
+export const carpoolDataState = atom({
+    key: "carpoolDataState",
+    default: [],
+});
 export const mapDisplayTypeState = atom({
     key: "mapDisplayTypeState",
     default: null,
