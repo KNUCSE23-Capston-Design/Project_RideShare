@@ -5,12 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCar, faTaxi } from "@fortawesome/free-solid-svg-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { useRecoilState } from "recoil";
-import { mapDisplayTypeState } from "../atoms";
 
 const Home = () => {
     const [searchText, setSearchText] = useState("");
-    const [mapDisplayType, setMapDisplayType] = useRecoilState(mapDisplayTypeState);
     const navigation = useNavigation();
 
     // 검색창에 입력하면 state 변경
@@ -20,8 +17,7 @@ const Home = () => {
 
     // screen type = string
     const handleSearch = (screen) => {
-        navigation.navigate(screen, { screen });
-        setMapDisplayType(screen);
+        navigation.navigate(screen);
     };
 
     return (

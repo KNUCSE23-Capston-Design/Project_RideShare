@@ -6,21 +6,19 @@ import Map from "./Map/Map";
 import List from "./List";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isMapLoadingState, mapDisplayTypeState, showOtherComponentState } from "./atoms";
+import { isMapLoadingState, showOtherComponentState } from "./atoms";
 import { Alert } from "react-native";
 import { useEffect } from "react";
 import { taxiDataState, carpoolDataState } from "./atoms";
 
 const Stack = createStackNavigator();
 
-const MapDisplay = () => {
+const MapDisplay = ({ route }) => {
     const navigation = useNavigation();
     const [showOtherComponents, setShowOtherComponents] = useRecoilState(showOtherComponentState);
     const [taxiData, setTaxiData] = useRecoilState(taxiDataState);
     const [carpoolData, setCarpoolData] = useRecoilState(carpoolDataState);
-
-    const mapType = useRecoilValue(mapDisplayTypeState);
-    // console.log(mapType);
+    const { screenType } = route.params;
 
     // http://192.168.0.107:8080/parties/taxis 해당 주소는 김진성의 데스크탑 IP 주소이다. 실제로 서버를 가동하기 전까지는 자신의 로컬서버를 운영한다.
     const getData = async (screen) => {
@@ -72,7 +70,7 @@ const MapDisplay = () => {
             navigation.navigate("Map");
         } else {
             setShowOtherComponents(true);
-            navigation.navigate("List");
+            navigation.navigate("List", { parentScreenType: screenType });
         }
     };
 
@@ -84,8 +82,8 @@ const MapDisplay = () => {
     });
 
     useEffect(() => {
-        getData(mapType);
-    }, []);
+        getData(screenType);
+    }, [screenType]);
 
     return (
         <>

@@ -27,7 +27,3 @@ export const carpoolDataState = atom({
     key: "carpoolDataState",
     default: [],
 });
-export const mapDisplayTypeState = atom({
-    key: "mapDisplayTypeState",
-    default: null,
-});
