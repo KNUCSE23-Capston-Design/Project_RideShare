@@ -19,7 +19,7 @@ const MapDisplay = ({ route }) => {
     const [taxiData, setTaxiData] = useRecoilState(taxiDataState);
     const [carpoolData, setCarpoolData] = useRecoilState(carpoolDataState);
     const { screenType } = route.params;
-
+    console.log(route.name);
     // http://192.168.0.107:8080/parties/taxis 해당 주소는 김진성의 데스크탑 IP 주소이다. 실제로 서버를 가동하기 전까지는 자신의 로컬서버를 운영한다.
     const getData = async (screen) => {
         // 아래 부분은 백엔드 개발자와 회의를 통해 요청명을 정하고 수정한다.
@@ -30,7 +30,7 @@ const MapDisplay = ({ route }) => {
         }
 
         try {
-            const jsonData = await axios.get(`http://192.168.0.107:8080/parties/${screen}`);
+            const jsonData = await axios.get(`http://192.168.1.116:8080/parties/${screen}`);
 
             const dataArray = jsonData.data;
             const listData = dataArray.map((item) => ({
@@ -46,6 +46,8 @@ const MapDisplay = ({ route }) => {
                 startTime: item.startTime,
                 startTimeStr: item.startTimeStr,
                 totalHeadcnt: item.total,
+                startLat: item.startLat,
+                startLng: item.startLng,
             }));
 
             // console.log(listData[0]);
@@ -67,7 +69,7 @@ const MapDisplay = ({ route }) => {
         setShowOtherComponents(!showOtherComponents);
         if (showOtherComponents) {
             setShowOtherComponents(false);
-            navigation.navigate("Map");
+                navigation.navigate("Map", { parentScreenType: screenType });
         } else {
             setShowOtherComponents(true);
             navigation.navigate("List", { parentScreenType: screenType });
@@ -88,7 +90,7 @@ const MapDisplay = ({ route }) => {
     return (
         <>
             <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName="Map">
-                <Stack.Screen name="Map" component={Map} />
+                <Stack.Screen name="Map" component={Map} initialParams={{ parentScreenType: screenType }}/>
                 <Stack.Screen name="List" component={List} />
             </Stack.Navigator>
             {mapLoading ? (
