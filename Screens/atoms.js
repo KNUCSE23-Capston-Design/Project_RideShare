@@ -4,8 +4,12 @@ export const isLoggedInState = atom({
     key: "isLoggedInState",
     default: false,
 });
-export const showOtherComponentState = atom({
-    key: "showOtherComponentState",
+export const showTaxiState = atom({
+    key: "showTaxiState",
+    default: false,
+});
+export const showCarpoolState = atom({
+    key: "showCarpoolState",
     default: false,
 });
 export const isMapLoadingState = atom({
