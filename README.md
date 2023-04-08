@@ -30,6 +30,8 @@ expo 적용 후 실행하기 위해서는 다음 2가지 중 하나를 수행해
 2. my info 구성
 3. 채팅 기능 구현
 
+fix -> touchableOpacity 버튼 에러 수정
+
 <p>
 커밋 형식
 feat : 새로운 기능에 대한 커밋
