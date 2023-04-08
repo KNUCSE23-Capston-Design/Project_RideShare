@@ -1,12 +1,10 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./Screens/Login/Login";
 import NavigationBar from "./NavigationBar";
-import Home from "./Screens/Home/Home";
 import SignUp from "./Screens/SignUp/SignUp";
 import { RecoilRoot } from "recoil";
-import MapDisplay from "./Screens/MapDisplay";
 
 const Stack = createStackNavigator();
 
