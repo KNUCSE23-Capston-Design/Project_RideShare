@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { View, TextInput, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Dimensions, View, TextInput, Image, TouchableOpacity, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { useRecoilState } from "recoil";
 import { isLoggedInState } from "../atoms";
+import * as Font from "expo-font";
+const screenHeight = Dimensions.get("window").height;
 
 const Login = () => {
     // useState : 아이디와 암호 입력 값을 저장
@@ -32,9 +34,9 @@ const Login = () => {
 
     return (
         <View style={styles.container}>
-            <Image source={require("../../assets/logo/logo_m.png")} />
-            <TextInput style={styles.input} onChangeText={(text) => setId(text)} value={id} placeholder="ID" />
-            <TextInput style={styles.input} onChangeText={(text) => setPassword(text)} value={password} placeholder="Password" secureTextEntry={true} />
+            <Image source={require("../../assets/logo/logo7.png")} style={{ width: 270, height: 60, margin: 5 }} />
+            <TextInput style={styles.input} onChangeText={(text) => setId(text)} value={id} placeholder="아이디" />
+            <TextInput style={styles.input} onChangeText={(text) => setPassword(text)} value={password} placeholder="비밀번호" secureTextEntry={true} />
             <TouchableOpacity onPress={handleLogin} style={styles.loginButton}>
                 <View style={styles.buttonContainer}>
                     <Text style={styles.buttonText}>로그인</Text>
@@ -54,33 +56,40 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
+        backgroundColor: "#ffffff",
+        paddingTop: screenHeight * 0.1,
     },
     input: {
         height: 40,
         width: "80%",
         borderColor: "gray",
         borderWidth: 1,
-        margin: 10,
+        margin: 5,
         padding: 10,
+        backgroundColor: "#ffffff",
+        color: "#D5D7F2",
+        borderRadius: 10,
     },
     loginButton: {
         width: "80%",
     },
     buttonContainer: {
-        backgroundColor: "blue",
+        backgroundColor: "#9196F2",
         alignItems: "center",
         padding: 10,
+        marginTop: 10,
+        borderRadius: 10,
     },
     buttonText: {
-        color: "white",
+        color: "#ffffff",
         fontSize: 16,
     },
     signupText: {
-        marginTop: 30,
+        marginTop: 20,
     },
     signupLink: {
-        color: "blue",
+        color: "#4541BF",
     },
 });
 
